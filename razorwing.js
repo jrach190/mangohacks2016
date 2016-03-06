@@ -20,16 +20,31 @@ function getData(){
     data [8][0]= "Hello";
     data [9][0]= "Hello";
     
-    data [0][1]= "negative";
-    data [1][1]= "positive";
-    data [2][1]= "positive";
-    data [3][1]= "neutral";
-    data [4][1]= "positive";
-    data [5][1]= "positive";
-    data [6][1]= "neutral";
-    data [7][1]= "negative";
-    data [8][1]= "negative";
-    data [9][1]= "positive";
+    for (i=0; i < 10; i++){
+        r = Math.floor((Math.random() * 4))
+        switch (r){
+            case 0:
+                data [i][1]= "negative";
+                break;
+            case 1:
+            case 2:
+                data [i][1]= "positive";
+                break;
+            case 3:
+                data [i][1]= "neutral";
+                break;
+        }
+        
+    }
+   // data [1][1]= "positive";
+  //  data [2][1]= "positive";
+  //  data [3][1]= "neutral";
+ //   data [4][1]= "positive";
+//    data [5][1]= "positive";
+ //   data [6][1]= "neutral";
+ //   data [7][1]= "negative";
+//    data [8][1]= "negative";
+//    data [9][1]= "positive";
     return data;
 }
 
@@ -88,6 +103,10 @@ function drawGraph(){
             }]
         },
         tooltip: {
+            formatter: function () {
+                return '<b>' + text[this.x] + '</b>';
+            }
+                    
         },
         legend: {
             enabled: false
