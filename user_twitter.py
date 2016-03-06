@@ -14,7 +14,9 @@ ckey = 'U9Tafmmex2480HX7rk0WBlxVz'
 csecret = 'j12CT89zB9kac8NnVVyP9C75NLxoijvfpGIpR5HwxPOf2Tj9pr'
 atoken = '213110253-Iz7sSME8PDW9qvKaueDkvEKzzsCPS40LQhzGM2cW'
 asecret = 'Ctl89F53FPNjgLq9wThS2ZZXop4OT15DMe5v0IwGdMI7K'
-user = raw_input("enter the handle of who you want\n")
+
+user = '@elonmusk'
+#user = raw_input("enter the handle of who you want\n")
 
 auth = OAuthHandler(ckey, csecret)
 auth.set_access_token(atoken, asecret)
@@ -24,13 +26,23 @@ datum_box = DatumBox(API_KEY)
 
 list = []
 
+# print u"Mystery char: \u2026"
+# print type("\u2026")
+
+# For each status, clean up the tweet itself and get the sentiment
 for status in api.user_timeline(user, count = 10):
-    list.append(str(status.text))
-    print status.text
-for tweet in list:
-    for word in tweet:
-        word.replace("@","")
-    print "Converted string is: %s" % tweet
-    tweet = datum_box.twitter_sentiment_analysis(tweet)
-    print tweet
+
+    # Declare empty cleaned tweet string
+    cleantweet = ''
+
+    # Clean up - anything non-alphanumeric in the tweet text is useless
+    # and can potentially cause an error with the datumbox call
+    for char in status.text:
+        if char.isalnum() or char.isspace():
+            cleantweet += char
+
+
+
+    sentiment = datum_box.twitter_sentiment_analysis(cleantweet)
+    print "Sentiment is \"{0}\" for tweet \"{1}\"".format(sentiment, cleantweet)
 
