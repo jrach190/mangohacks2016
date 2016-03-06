@@ -34,6 +34,9 @@ api = tweepy.API(auth)
 datum_box = DatumBox(API_KEY)
 
 @app.route('/',methods=['POST','GET'])
+def home():
+    return render_template('/index.html')
+
 
 def miapp():
     user_name = request.form['user']
@@ -72,7 +75,7 @@ def miapp():
     #       print i
     #   for i in sentlist:
     #       print i
-    return render_template('index.html',text=tweetlist, mood=sentlist)
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run()
