@@ -6,6 +6,7 @@ import tweepy
 from tweepy import OAuthHandler
 from DatumBox import DatumBox
 
+
 API_KEY = "454ec357b72e7d0c06cac8df90bb8862"
 
 
@@ -49,6 +50,7 @@ for status in api.user_timeline(user, count = 10):
     sentlist.append(sentiment)
 
     #print ("Sentiment is \"{0}\" for tweet \"{1}\"".format(sentiment, cleantweet))
+
 
 for i in tweetlist:
     print i
