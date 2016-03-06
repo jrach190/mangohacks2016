@@ -15,8 +15,8 @@ csecret = 'j12CT89zB9kac8NnVVyP9C75NLxoijvfpGIpR5HwxPOf2Tj9pr'
 atoken = '213110253-Iz7sSME8PDW9qvKaueDkvEKzzsCPS40LQhzGM2cW'
 asecret = 'Ctl89F53FPNjgLq9wThS2ZZXop4OT15DMe5v0IwGdMI7K'
 
-user = '@elonmusk'
-#user = raw_input("enter the handle of who you want\n")
+#user = '@elonmusk'
+user = raw_input("enter the handle of who you want\n")
 
 auth = OAuthHandler(ckey, csecret)
 auth.set_access_token(atoken, asecret)
@@ -24,7 +24,8 @@ api = tweepy.API(auth)
 
 datum_box = DatumBox(API_KEY)
 
-list = []
+tweetlist = []
+sentlist = []
 
 # print u"Mystery char: \u2026"
 # print type("\u2026")
@@ -42,7 +43,14 @@ for status in api.user_timeline(user, count = 10):
             cleantweet += char
 
 
-
+    tweetlist.append(cleantweet)
     sentiment = datum_box.twitter_sentiment_analysis(cleantweet)
-    print "Sentiment is \"{0}\" for tweet \"{1}\"".format(sentiment, cleantweet)
 
+    sentlist.append(sentiment)
+
+    #print ("Sentiment is \"{0}\" for tweet \"{1}\"".format(sentiment, cleantweet))
+
+for i in tweetlist:
+    print i
+for i in sentlist:
+    print i
