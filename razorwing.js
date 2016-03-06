@@ -1,12 +1,69 @@
-function drawGraph(){
-        $('#image-container').css('position', 'fixed')
-        $('#image-container').remove();
+mood = [];
+text = [];
+var data = new Array(10);
+for (var i = 0; i < 10; i++) {
+  data[i] = new Array(2);
+}
+pos = 0;
+negs = 0;
+neut = 0;
+
+function getData(){
+    data [0][0]= "Hello";
+    data [1][0]= "Hello";
+    data [2][0]= "Hello";
+    data [3][0]= "Hello";
+    data [4][0]= "Hello";
+    data [5][0]= "Hello";
+    data [6][0]= "Hello";
+    data [7][0]= "Hello";
+    data [8][0]= "Hello";
+    data [9][0]= "Hello";
+    
+    data [0][1]= "negative";
+    data [1][1]= "positive";
+    data [2][1]= "positive";
+    data [3][1]= "neutral";
+    data [4][1]= "positive";
+    data [5][1]= "positive";
+    data [6][1]= "neutral";
+    data [7][1]= "negative";
+    data [8][1]= "negative";
+    data [9][1]= "positive";
+    return data;
+}
+
+function interpretData(data){
+    for (i = 0; i < data.length; i++) {
+       text[i] = data[i][0];
+        mood[i] = data[i][1];
+        if(mood[i] == "positive"){
+            pos = pos + 1;
+            mood[i] = 1;
+        }else if(mood[i] == "negative"){
+            negs = negs+1;
+            mood[i] = -1;
+        }else{
+            neut = neut + 1;
+            mood[i] = 0;
+        }
         
-        $('#graph').fadeIn()
+     }
+}
+
+function drawGraph(){
+    $(".jumbotron").css("height", "100%");
+    twitter_data = getData();
+    interpretData(twitter_data);
+    $('#image-container').css('position', 'fixed')
+    $('#image-container').remove();
+
+    
+    $('#graph').fadeIn()
         
     $('#graph').highcharts({
         title: {
-            text: 'Average Mood',
+            text: 'Mood Timeline',
             x: -20 //center
         },
         subtitle: {
@@ -14,12 +71,16 @@ function drawGraph(){
             x: -20
         },
         xAxis: {
-            categories: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+          tickInterval: 1,
+          title: {
+              text: 'Post'
+          }
         },
         yAxis: {
             title: {
                 text: 'Mood'
             },
+            tickInterval: 1,
             plotLines: [{
                 value: 0,
                 width: 1,
@@ -29,22 +90,23 @@ function drawGraph(){
         tooltip: {
         },
         legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
+            enabled: false
         },
         series: [{
             name: user,
-            data: [1, 1, 0, 0, -1, -1, -1]
+            data: mood
         }]
     });
+    
+    pieChart();
     
 }
 
 
 function pieChart(){
-    $('#graph').highcharts({
+    $('#pie').fadeIn()
+    
+    $('#pie').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -63,27 +125,27 @@ function pieChart(){
                 cursor: 'pointer',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
                 }
             }
         },
         series: [{
-            name: 'Brands',
+            name: 'Mood',
             colorByPoint: true,
             data: [{
                 name: 'Positive',
-                y: 50,
+                y: (pos/(pos+negs+neut)),
                 sliced: true,
-                selected: true
+                selected: true,
+                color: '#00cc66'
             }, {
                 name: 'Negative',
-                y: 25,
+                y: (negs/(pos+negs+neut)),
+                color: '#ff5050'
             }, {
                 name: 'Neutral',
-                y: 25
+                y: (neut/(pos+negs+neut)),
+                color: '#cfcfcf'
             }]
         }]
     });

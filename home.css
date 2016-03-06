@@ -28,7 +28,15 @@
     animation-fill-mode: forwards;
 }
 
+#submit{
+    height: 90px;
+}
+
 #graph{
+    margin-top: 20px;
+}
+
+#pie{
     margin-top: 20px;
 }
 

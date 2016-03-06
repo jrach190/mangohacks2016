@@ -35,11 +35,12 @@
 <div class="container">
     <row>
     <div class="col-md-4 col-md-offset-4" >
-      <form class="form-inline" role="form" action="/logstart" method="POST">
+      <form class="form-inline" role="form" action="/" method="POST">
       <div class="input-group input-group-lg">
         <input type="text" class="form-control" placeholder="Username" id="user_name" aria-describedby="sizing-addon1">
+          <input type="password" class="form-control" placeholder="password" id="p-word" aria-describedby="sizing-addon1">
         <span class="input-group-btn">
-            <button type="button" id="submit" class="btn btn-primary" >Search</button>
+            <button type="submit" id="submit" class="btn btn-primary" >Log In</button>
         </span>  
         </div>  
     </form>
@@ -50,6 +51,9 @@
             <img src="blue-bird.png" class="img-responsive">
             </div>
         <div class ="col-md-12" id="graph" style="display: none"></div>
+    </row>
+    <row>
+        <div class ="col-md-12" id="pie" style="display: none"></div>
     </row>
         </div>
     </div>
