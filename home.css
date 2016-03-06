@@ -1,3 +1,7 @@
+.twitter-share-button{
+    margin-top: 10px;
+}
+
 .jumbotron{
     height: 800px;
     padding-top: 0;
@@ -14,7 +18,7 @@
 }
 
 .jumbotron > .container > row > .col-md-4 > img {
-    margin-top: 10px;
+    margin-top: 20px;
     animation-name: img_tilt;
     animation-duration: 4s;
     animation-iteration-count: infinite;
@@ -39,6 +43,6 @@
 }
 
 @keyframes query_user_img{
-    from{margin-top: 10px;}
-    to {margin-top: 160px;}
+    from{margin-top: 20px;}
+    to {margin-top: 170px;}
 }
