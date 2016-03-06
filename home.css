@@ -1,0 +1,44 @@
+.jumbotron{
+    height: 800px;
+    padding-top: 0;
+}
+
+.jumbotron > .container > row > .col-md-4 > form {
+    margin-top: 150px;
+    animation-name: query_user;
+    animation-duration: 2s;
+    animation-delay: .35s;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+}
+
+.jumbotron > .container > row > .col-md-4 > img {
+    margin-top: 10px;
+    animation-name: img_tilt;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+}
+
+#graph{
+    margin-top: 20px;
+}
+
+@keyframes query_user{
+    from{margin-top: 150px;}
+    to {margin-top: 0px;}
+}
+
+@keyframes img_tilt{
+    from{transform: rotate(5deg);}
+    to{transform: rotate(10deg);}
+}
+
+@keyframes query_user_img{
+    from{margin-top: 10px;}
+    to {margin-top: 160px;}
+}
