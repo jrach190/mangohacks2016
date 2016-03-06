@@ -33,7 +33,7 @@ api = tweepy.API(auth)
 
 datum_box = DatumBox(API_KEY)
 
-@app.route('/',methods=['POST','GET'])
+@app.route('/templates')
 def home():
     return render_template('/index.html')
 
